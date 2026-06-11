@@ -14,7 +14,7 @@ const app = express();
 console.log("BOOT STARTED");
 
 // ======================
-// 1. CORS (MUST BE FIRST)
+// 1. CORS CONFIG (FIXED)
 // ======================
 app.use(cors({
   origin: [
@@ -26,8 +26,6 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
-
-app.options("*", cors()); // IMPORTANT for preflight
 
 // ======================
 // 2. BASIC MIDDLEWARE
@@ -48,20 +46,22 @@ app.get("/", (req, res) => {
 const startServer = async () => {
   try {
     console.log("BEFORE CLOUDINARY");
+
     await connectCloudinary();
+
     console.log("AFTER CLOUDINARY");
 
     // ======================
     // 5. PROTECTED ROUTES
     // ======================
-    app.use("/api", requireAuth()); // IMPORTANT: apply once for all APIs
+    app.use("/api", requireAuth());
 
     app.use("/api/ai", aiRouter);
     app.use("/api/user", userRouter);
     app.use("/api/upload", uploadRouter);
 
     // ======================
-    // 6. START LISTENING
+    // 6. START SERVER
     // ======================
     const PORT = process.env.PORT || 3000;
 
