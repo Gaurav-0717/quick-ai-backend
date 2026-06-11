@@ -1,6 +1,11 @@
+import connectCloudinary from './configs/cloudinary.js';
+
+console.log("BOOT STARTED");
 const startServer = async () => {
   try {
+    console.log("BEFORE CLOUDINARY");
     await connectCloudinary();
+    console.log("AFTER CLOUDINARY");
 
     app.use(cors());
     app.use(express.json());
