@@ -20,7 +20,7 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://quick-ai-frontend-eight.vercel.app"
+    "https://quick-ai-frontend-n17ovili9-gaurav-0717s-projects.vercel.app",
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
