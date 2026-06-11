@@ -24,7 +24,14 @@ const startServer = async () => {
     console.log("AFTER CLOUDINARY");
 
     // Middlewares
-    app.use(cors());
+    app.use(cors({
+      origin: [
+        "http://localhost:5173",
+        "http://localhost:3000",
+        "https://quick-ai-frontend-eight.vercel.app"
+      ],
+      credentials: true
+    }));
     app.use(express.json());
     app.use(clerkMiddleware());
 
